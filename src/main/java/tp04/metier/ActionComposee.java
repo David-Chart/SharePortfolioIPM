@@ -22,6 +22,15 @@ public class ActionComposee extends Action {
         this.mapPanier = new HashMap();
     }
     
+    /** 
+     * Cette méthode permet de connaitre la composition d'une action composée
+     * @return 
+     * La méthode retourne une hashMap qui stock toute les actions qui composent l'action composée et les pourcentages
+     */
+    public Map<ActionSimple, Float> getMapPanier(){
+        return this.mapPanier;
+    }
+    
     public void enrgComposition(ActionSimple as, float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
@@ -37,6 +46,7 @@ public class ActionComposee extends Action {
         
         return valeur;
     }
+    
     
     
 }
