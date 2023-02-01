@@ -6,6 +6,7 @@
 
 package tp04.metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class ActionSimple extends Action {
     // attribut lien
     private Map<Jour, Cours> mapCours;
     
-    // constructeur
+   
     public ActionSimple(String libelle) {
         // Action simple initialisée comme 1 action
         super(libelle);
@@ -39,6 +40,8 @@ public class ActionSimple extends Action {
         else 
             return 0; // definition d'une constante possible
     }
+
+ 
   
     // encapsulation de la définition de la classe Cours
     private class Cours {

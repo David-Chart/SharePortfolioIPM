@@ -48,7 +48,7 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.acheter(bqAss, 15);
         System.out.println("Portefeuille : " + p);
-        System.out.println("Portefeuille à j1 : " + p.valeur(j1));
+        System.out.println("Portefeuille à j1 : " + p.valeurPortefeuille(j1));
         p.vendre(axa, 5);
         System.out.println("Portefeuille : " + p);
         p.vendre(axa, 5);
