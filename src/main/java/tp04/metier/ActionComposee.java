@@ -11,50 +11,55 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
+ *
  * @author David_C
  */
 public class ActionComposee extends Action {
     // attribut lien
     Map<ActionSimple, Float> mapPanier;
 
-    
+
     /**
-     * 
-     * @param libelle 
+     *
+     * @param libelle
      */
     public ActionComposee(String libelle) {
         super(libelle);
         this.mapPanier = new HashMap();
     }
-    
+
     /**
-     * 
-     * @param as
-     * @param pourcentage 
+     * Cette méthode permet de connaitre la composition d'une action composée
+     * @return
+     * La méthode retourne une hashMap qui stock toute les actions qui composent l'action composée et les pourcentages
      */
+    public Map<ActionSimple, Float> getMapPanier(){
+        return this.mapPanier;
+    }
+
     public void enrgComposition(ActionSimple as, float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
 
-    
+
     /**
-     * 
+     *
      * @param j
-     * @return 
+     * @return
      */
     @Override
     public float valeur(Jour j) {
         float valeur;
-        
+
         valeur = 0;
         for(ActionSimple as : this.mapPanier.keySet()) {
             valeur = valeur + (as.valeur(j) * this.mapPanier.get(as));
         }
         return valeur;
-    }    
+    }
 
-  
-    
-    
+
+
+
+
 }
