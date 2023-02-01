@@ -33,13 +33,17 @@ public class ActionSimple extends Action {
     }
     
     @Override
+    /**
+     * Cette méthode permet de vérifier le cour d'une action à un jour donné
+     *
+     */
     public float valeur(Jour j) {
         if(this.mapCours.containsKey(j) == true)
             return this.mapCours.get(j).getValeur();
         else 
             return 0; // definition d'une constante possible
     }
-  
+    
     // encapsulation de la définition de la classe Cours
     private class Cours {
         
