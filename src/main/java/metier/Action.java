@@ -31,7 +31,7 @@ public abstract class Action {
      * Constructeur d'action.
      * @param libelleA
      */
-    public Action(final String libelleA) {
+    protected Action(final String libelleA) {
         this.libelle = libelleA;
     }
 

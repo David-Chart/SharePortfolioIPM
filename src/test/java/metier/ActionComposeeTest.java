@@ -61,7 +61,7 @@ public class ActionComposeeTest {
     public static final ActionSimple ACTIONSIMPLE3_TEST = new ActionSimple("NT1");
     
     @Test
-    public void testGetMapPanier() {
+     void testGetMapPanier() {
        
         Map<ActionSimple, Float> composition = new HashMap<ActionSimple, Float>();
         composition.put(ACTIONSIMPLE1_TEST, 0.33f);

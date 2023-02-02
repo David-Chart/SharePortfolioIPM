@@ -79,7 +79,7 @@ public class Portefeuille {
      * Constructeur du portefeuille.
      */
     public Portefeuille() {
-        this.mapLignes = new HashMap();
+        this.mapLignes = new HashMap<>();
     }
 
     /**
@@ -101,10 +101,10 @@ public class Portefeuille {
      * @param q
      * @return la liste des ventes avec son jour.
      */
-    public final HashMap<Action, Jour> vendre(final Action a, int q) {
+    public final Map<Action, Jour> vendre(final Action a, int q) {
         Calendar c = Calendar.getInstance();
         Jour j = new Jour(c.get(Calendar.YEAR), c.get(Calendar.MONTH));
-        HashMap<Action, Jour> jourVentesActions = new HashMap<>();
+        Map<Action, Jour> jourVentesActions = new HashMap<>();
         if (this.mapLignes.containsKey(a)) {
             if (this.mapLignes.get(a).getQte() > q) {
                 this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
@@ -156,7 +156,7 @@ public class Portefeuille {
      * @param j
      * @return la liste des actions avec leur nom et leur valeur
      */
-    public final HashMap<String, Float> listeActions(final Jour j) {
+    public final Map<String, Float> listeActions(final Jour j) {
         HashMap<String, Float> listeActions;
         listeActions = new HashMap<>();
         for (Action a : mapLignes.keySet()) {

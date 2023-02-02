@@ -21,7 +21,7 @@ public class ActionSimpleTest {
 
     
     @org.junit.jupiter.api.Test
-    public void testGetLibelleShouldPass() {
+     void testGetLibelleShouldPass() {
         final ActionSimple as1 = new ActionSimple("Toto");
         final String result = as1.getLibelle();
         
@@ -35,7 +35,7 @@ public class ActionSimpleTest {
     float c1 = 30.0f;
     
     @Test
-    public void testValeur(){
+    void testValeur(){
     ACTIONSIMPLE1_TEST.enrgCours(j,c);
     ACTIONSIMPLE1_TEST.enrgCours(j1,c1);
     
