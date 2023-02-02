@@ -5,7 +5,9 @@
  */
 package metier;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,29 +16,35 @@ import java.util.Map;
  * @author perussel
  */
 public class Portefeuille {
+
     /**
      * Map stockant les ligne du portefeuille.
      */
     private final Map<Action, LignePortefeuille> mapLignes;
+
     /**
      * Sous objet ligne portefeuille.
      */
     private class LignePortefeuille {
-       /**
-        * Attribut action.
-        */
-       private final Action action;
-       /**
-        * Attribut qté.
-        */
-       private int qte;
-       /**
-        * getteur of quantité.
-        * @return la quantité
-        */
-       public int getQte() {
+
+        /**
+         * Attribut action.
+         */
+        private final Action action;
+        /**
+         * Attribut qté.
+         */
+        private int qte;
+
+        /**
+         * getteur of quantité.
+         *
+         * @return la quantité
+         */
+        public int getQte() {
             return qte;
         }
+
         /**
          * Setteur of qté.
          */
@@ -46,11 +54,13 @@ public class Portefeuille {
 
         /**
          * Getter of Action.
+         *
          * @return Action
          */
         public Action getAction() {
             return this.action;
         }
+
         /**
          * Constructor.
          */
@@ -59,11 +69,12 @@ public class Portefeuille {
             this.qte = qte;
         }
 
-       @Override
+        @Override
         public String toString() {
             return Integer.toString(qte);
         }
     }
+
     /**
      * Constructor.
      */
@@ -73,6 +84,7 @@ public class Portefeuille {
 
     /**
      * Methode for buying action in portefeuille.
+     *
      * @param a
      * @param q
      */
@@ -83,7 +95,6 @@ public class Portefeuille {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
         }
     }
-
 
     /**
      * @param a
@@ -101,7 +112,7 @@ public class Portefeuille {
                 jourVentesActions.put(a, j);
                 this.mapLignes.remove(a);
             }
-        }        
+        }
         return jourVentesActions;
     }
 
@@ -112,6 +123,7 @@ public class Portefeuille {
 
     /**
      * Methode to calculate tha value of portfeuille.
+     *
      * @param j
      * @return the value
      */
@@ -122,28 +134,36 @@ public class Portefeuille {
         }
         return total;
     }
-    
-    
-        public float valeurAction(Jour j) {
+
+    public float valeurAction(Jour j) {
         float totalAction = 0;
         for (Action a : this.mapLignes.keySet()) {
             totalAction += a.valeur(j);
         }
         return totalAction;
     }
- 
+
     /**
-     * 
+     *
      * @param j
-     * @return  
-     */  
-    public HashMap<String, Float> listeActions(Jour j)
-    {    
+     * @return
+     */
+    public HashMap<String, Float> listeActions(Jour j) {
         HashMap<String, Float> listeActions = new HashMap<String, Float>();
-        
-        for (Action a : mapLignes.keySet()){
+
+        for (Action a : mapLignes.keySet()) {
             listeActions.put(a.getLibelle(), valeurAction(j));
         }
         return listeActions;
+    }
+
+
+    
+    public int getMapLignes(Action a) {
+        if (this.mapLignes.containsKey(a)) {
+            return this.mapLignes.get(a).getQte();
+        } else {
+            return 0;
+        }
     }
 }

@@ -15,6 +15,7 @@
  */
 package metier;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +59,83 @@ public final class PortefeuilleTest {
         float valeur = 4000;
         float res = p.valeur(j1);
         Assertions.assertEquals(res, valeur);
+    }
+    
+    
+    
+
+
+    
+   
+
+    public void testGetQte() {
+
+        //Test la récuperation d'une quantité
+        ActionSimple actionSimple = new ActionSimple("TF1");
+
+        ActionComposee actionComposee = new ActionComposee("France 2");
+
+        Portefeuille portefeuille1 = new Portefeuille();
+
+        portefeuille1.acheter(actionSimple, 5);
+
+        portefeuille1.getMapLignes(actionSimple);
+
+        int qte = 5;
+
+        int result = portefeuille1.getMapLignes(actionSimple);
+
+        Assertions.assertEquals(qte, result, "la quantité récupérée n'est pas la même que la quantité enregistrée");
+    }
+
+    public void testAcheter() {
+        //test pour vérifier que la méthode acheter fonction dans le cas ou l'action existe déjà dans le portefeuille
+        ActionSimple actionSimple = new ActionSimple("TF1");
+
+        Portefeuille portefeuille1 = new Portefeuille();
+
+        portefeuille1.acheter(actionSimple, 2);
+        portefeuille1.acheter(actionSimple, 5);
+
+        int qte1 = 7;
+
+        int result1 = portefeuille1.getMapLignes(actionSimple);
+
+        Assertions.assertEquals(qte1, result1, "la quantité récupérée n'a pas fait la somme de la quantité déjà existance");
+    }
+
+    public void testVendre() {
+        //Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité inférieure à la quantité existante
+
+        ActionSimple actionSimple = new ActionSimple("TF1");
+        Portefeuille portefeuille1 = new Portefeuille();
+        portefeuille1.acheter(actionSimple, 7);
+        portefeuille1.vendre(actionSimple, 3);
+
+        int qte2 = 4;
+
+        int result2 = portefeuille1.getMapLignes(actionSimple);
+
+        Assertions.assertEquals(qte2, result2, "la quantité récupérée n'a pas soustrait la quantité vendue à celle déjà existante");
 
     }
 
+    public void testVendreTout() {
+        //Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité égale à la quantité existante
+        ActionSimple actionSimple = new ActionSimple("TF1");
+        Portefeuille portefeuille1 = new Portefeuille();
+
+        portefeuille1.acheter(actionSimple, 4);
+        portefeuille1.vendre(actionSimple, 4);
+
+        int qte3 = 0;
+
+        int result3 = portefeuille1.getMapLignes(actionSimple);
+
+        Assertions.assertEquals(qte3, result3, "la quantité récupérée n'est pas égale à 0");
+
+    }
+    
+    
 }
+
