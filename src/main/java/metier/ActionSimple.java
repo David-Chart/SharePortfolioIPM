@@ -29,7 +29,7 @@ public class ActionSimple extends Action {
 
     // enrg possible si pas de cours pour ce jour
     public void enrgCours(Jour j, float v) {
-        if(this.mapCours.containsKey(j))
+        if(!this.mapCours.containsKey(j))
             this.mapCours.put(j, new Cours(j, v));
     }
 
