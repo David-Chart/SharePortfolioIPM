@@ -5,6 +5,7 @@
  */
 package metier;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class Portefeuille {
     /**
      * Map stockant les ligne du portefeuille.
      */
-    private Map<Action, LignePortefeuille> mapLignes;
+    private final Map<Action, LignePortefeuille> mapLignes;
     /**
      * Sous objet ligne portefeuille.
      */
@@ -24,7 +25,7 @@ public class Portefeuille {
        /**
         * Attribut action.
         */
-       private Action action;
+       private final Action action;
        /**
         * Attribut qté.
         */
@@ -39,7 +40,7 @@ public class Portefeuille {
         /**
          * Setteur of qté.
          */
-        public void setQte(int qte) {
+        public void setQte(final int qte) {
             this.qte = qte;
         }
 
@@ -53,7 +54,7 @@ public class Portefeuille {
         /**
          * Constructor.
          */
-        public LignePortefeuille(Action action, int qte) {
+        LignePortefeuille(final Action action, int qte) {
             this.action = action;
             this.qte = qte;
         }
@@ -75,7 +76,7 @@ public class Portefeuille {
      * @param a
      * @param q
      */
-    public void acheter(Action a, int q) {
+    public final void acheter(Action a, int q) {
         if (!this.mapLignes.containsKey(a)) {
             this.mapLignes.put(a, new LignePortefeuille(a, q));
         } else {
@@ -83,19 +84,25 @@ public class Portefeuille {
         }
     }
 
+
     /**
-     * Mehtode for selling actions in portefeuille.
      * @param a
      * @param q
+     * @return une hashmap des actions vendues
      */
-    public void vendre(Action a, int q) {
+    public HashMap<Action, Jour> vendre(Action a, int q) {
+        Calendar c = Calendar.getInstance();
+        Jour j = new Jour(c.get(Calendar.YEAR), c.get(Calendar.MONTH));
+        HashMap<Action, Jour> jourVentesActions = new HashMap<>();
         if (this.mapLignes.containsKey(a)) {
             if (this.mapLignes.get(a).getQte() > q) {
                 this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
             } else if (this.mapLignes.get(a).getQte() == q) {
+                jourVentesActions.put(a, j);
                 this.mapLignes.remove(a);
             }
-        }
+        }        
+        return jourVentesActions;
     }
 
     @Override
@@ -114,5 +121,29 @@ public class Portefeuille {
             total = total + (lp.getQte() * lp.getAction().valeur(j));
         }
         return total;
+    }
+    
+    
+        public float valeurAction(Jour j) {
+        float totalAction = 0;
+        for (Action a : this.mapLignes.keySet()) {
+            totalAction += a.valeur(j);
+        }
+        return totalAction;
+    }
+ 
+    /**
+     * 
+     * @param j
+     * @return  
+     */  
+    public HashMap<String, Float> listeActions(Jour j)
+    {    
+        HashMap<String, Float> listeActions = new HashMap<String, Float>();
+        
+        for (Action a : mapLignes.keySet()){
+            listeActions.put(a.getLibelle(), valeurAction(j));
+        }
+        return listeActions;
     }
 }
