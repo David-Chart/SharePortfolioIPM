@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package tp04.metier;
+package metier;
 
 /**
  *
  * @author perussel
  */
 public class Cours {
-
+    
 }

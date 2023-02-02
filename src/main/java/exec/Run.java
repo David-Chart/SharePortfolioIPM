@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp04.exec;
+package exec;
 
-import tp04.metier.Action;
-import tp04.metier.ActionComposee;
-import tp04.metier.ActionSimple;
-import tp04.metier.Jour;
-import tp04.metier.Portefeuille;
+import metier.ActionComposee;
+import metier.ActionSimple;
+import metier.Jour;
+import metier.Portefeuille;
 
 public class Run {
 
     public static void main(String[] args) {
         ActionSimple bnp, axa;
         ActionComposee bqAss;
-        Jour j1, j2;
+        Jour j1; 
+        Jour j2;
 
         // init des objets metiers Jour
         j1 = new Jour(2014, 1);
