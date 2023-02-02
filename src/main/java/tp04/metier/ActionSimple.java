@@ -17,44 +17,69 @@ public class ActionSimple extends Action {
 
     // attribut lien
     private Map<Jour, Cours> mapCours;
-    
-    // constructeur
+
+    /**
+     * Constructor.
+     * @param libelle
+     */
     public ActionSimple(String libelle) {
         // Action simple initialisée comme 1 action
         super(libelle);
         // init spécifique
         this.mapCours = new HashMap();
     }
-    
-    // enrg possible si pas de cours pour ce jour
+
+    /**
+     * enrg possible si pas de cours pour ce jour.
+     * @param j
+     * @param v
+     */
     public void enrgCours(Jour j, float v) {
-        if(this.mapCours.containsKey(j) == false)
+        if (!this.mapCours.containsKey(j)) {
             this.mapCours.put(j, new Cours(j, v));
+        }
     }
-    
+
     @Override
     public float valeur(Jour j) {
-        if(this.mapCours.containsKey(j) == true)
+        if (this.mapCours.containsKey(j)) {
             return this.mapCours.get(j).getValeur();
-        else 
-            return 0; // definition d'une constante possible
+        } else {
+            return 0;
+        }
     }
-  
-    // encapsulation de la définition de la classe Cours
+
+    /**
+     * encapsulation de la définition de la classe Cours.
+     */
     private class Cours {
-        
+        /**
+         * attribut Jour jour.
+         */
         private Jour jour;
-
+        /**
+         * Atribut valeur.
+         */
         private float valeur;
-
+        /**
+         * Getter of valeur.
+         * @return valeur
+         */
         public float getValeur() {
             return valeur;
         }
-        
+        /**
+         * Getter jour.
+         * @return Jour jour
+         */
         public Jour getJour() {
             return jour;
         }
-
+        /**
+         * Constructor.
+         * @param jour
+         * @param valeur
+         */
         public Cours(Jour jour, float valeur) {
             this.jour = jour;
             this.valeur = valeur;

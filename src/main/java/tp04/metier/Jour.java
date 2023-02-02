@@ -16,7 +16,7 @@ public class Jour {
     private int noJour;
 
     /**
-     * Get the value of annee
+     * Get the value of annee.
      *
      * @return the value of annee
      */
@@ -26,7 +26,7 @@ public class Jour {
 
 
     /**
-     * Get the value of noJour
+     * Get the value of noJour.
      *
      * @return the value of noJour
      */
@@ -34,6 +34,11 @@ public class Jour {
         return noJour;
     }
 
+    /**
+     * Constructor.
+     * @param annee
+     * @param noJour
+     */
     public Jour(int annee, int noJour) {
         this.annee = annee;
         this.noJour = noJour;
@@ -64,5 +69,4 @@ public class Jour {
         }
         return true;
     }
-  
 }

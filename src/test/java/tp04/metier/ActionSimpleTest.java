@@ -20,4 +20,24 @@ public class ActionSimpleTest {
     public void testSomeMethod() {
     }
     
+    public static final ActionSimple ACTIONSIMPLE1_TEST = new ActionSimple("TF1");
+    Jour j = new Jour(2023,1);
+    float c = 20.0f;
+    Jour j1 = new Jour(2023,3);
+    float c1 = 30.0f;
+    
+    @Test
+    public void testValeur(){
+    ACTIONSIMPLE1_TEST.enrgCours(j,c);
+    ACTIONSIMPLE1_TEST.enrgCours(j1,c1);
+    
+    float res = ACTIONSIMPLE1_TEST.valeur(j);
+    float expRes = c;
+    
+    assertEquals(expRes, res, "The result must be the same as the one used at creation time.");
+    
+    }
+
+    
+    
 }
