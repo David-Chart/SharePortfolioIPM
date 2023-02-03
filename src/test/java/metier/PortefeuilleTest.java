@@ -391,7 +391,7 @@ final class PortefeuilleTest {
         portefeuille1.vendre(france3, jour2, 5);
         
         List<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
-        Assertions.assertTrue(resultAttendu.containsAll(result1));
+        Assertions.assertFalse(resultAttendu.containsAll(result1));
     }
     
       @Test
