@@ -69,7 +69,7 @@ public class Jour {
     }
 
     /**
-     *methode equals
+     *methode equals.
      * @param obj
      * @return boolean
      */

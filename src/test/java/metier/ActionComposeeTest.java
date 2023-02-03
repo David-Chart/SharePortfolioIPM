@@ -17,83 +17,61 @@ package metier;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author Moham
- */
-/**
- *
- * @author 
- */
 public class ActionComposeeTest {
-    
-    public ActionComposeeTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of getMapPanier method, of class ActionComposee.
      */
-
-    public static final ActionSimple ACTIONSIMPLE1_TEST = new ActionSimple("TF1");
-    public static final ActionSimple ACTIONSIMPLE2_TEST = new ActionSimple("TFX");
-    public static final ActionSimple ACTIONSIMPLE3_TEST = new ActionSimple("NT1");
+    /**
+     * ACTIONSIMPLE1.
+     */
+    public static final ActionSimple ACTIONSIMPLE1 = new ActionSimple("TF1");
+    /**
+     * ACTIONSIMPLE2.
+     */
+    public static final ActionSimple ACTIONSIMPLE2 = new ActionSimple("TFX");
+    /**
+     * ACTIONSIMPLE1.
+     */
+    public static final ActionSimple ACTIONSIMPLE3 = new ActionSimple("NT1");
 
     @Test
     /**
-     * 
+     *
      */
-     void testGetMapPanier() {  
+    void testGetMapPanier() {
         Map<ActionSimple, Float> composition;
         composition = new HashMap<ActionSimple, Float>();
-        composition.put(ACTIONSIMPLE1_TEST, 0.33f);
-        composition.put(ACTIONSIMPLE2_TEST, 0.33f);
-        composition.put(ACTIONSIMPLE3_TEST, 0.34f);       
+
+        composition.put(ACTIONSIMPLE1, 0.33f);
+        composition.put(ACTIONSIMPLE2, 0.33f);
+        composition.put(ACTIONSIMPLE3, 0.34f);
+
         ActionComposee instance = new ActionComposee("FranceTV");
-        instance.enrgCompo(ACTIONSIMPLE1_TEST, 0.33f);
-        instance.enrgCompo(ACTIONSIMPLE2_TEST, 0.33f);
-        instance.enrgCompo(ACTIONSIMPLE3_TEST, 0.34f);
-        
-        
+        instance.enrgCompo(ACTIONSIMPLE1, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE2, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE3, 0.34f);
+
         Map<ActionSimple, Float> result = instance.getMapPanier();
         Assertions.assertEquals(composition, result, "The result must be the same as the one used at creation time.");
-        // TODO review the generated test code and remove the default call to fail.
     }
-    @Test
+
     /**
      * test of value méthode.
      */
-     void testValeurVraie(){
+    @Test
+    final void testValeurVraie() {
 
-     float expRes = 0.34f;
-     ActionComposee instance = new ActionComposee("FranceTV");
-     instance.enrgCompo(ACTIONSIMPLE1_TEST, 0.33f);
-     instance.enrgCompo(ACTIONSIMPLE2_TEST, 0.33f);
-     instance.enrgCompo(ACTIONSIMPLE3_TEST, 0.34f);
-     float res = instance.pourcentageActionSimple(ACTIONSIMPLE3_TEST);
-    Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");   
+        float expRes = 0.34f;
+        ActionComposee instance = new ActionComposee("FranceTV");
+        instance.enrgCompo(ACTIONSIMPLE1, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE2, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE3, 0.34f);
+        float res = instance.pourcentageActionSimple(ACTIONSIMPLE3);
+
+        Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");
     }
 }

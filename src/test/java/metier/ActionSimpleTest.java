@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
  * @author David_C
  */
 public class ActionSimpleTest {
-            /**
+
+    /**
      * ActionSimple.
      */
-    public static final ActionSimple  ACTIONS_TEST = new ActionSimple("TF1");
+    public static final ActionSimple ACTIONS_TEST = new ActionSimple("TF1");
     /**
      * j.
      */
@@ -32,24 +33,26 @@ public class ActionSimpleTest {
     /**
      * constructor.
      */
-    public ActionSimpleTest() { }
+    public ActionSimpleTest() {
+    }
 
     /**
      * testValeur.
      */
     @Test
-    final void testValeur(){
-    ACTIONS_TEST.enrgCours(j, c);
-    ACTIONS_TEST.enrgCours(j1, c1);
-    float res = ACTIONS_TEST.valeur(j);
-    float expRes = c;
-    Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");
+    final void testValeur() {
+        ACTIONS_TEST.enrgCours(j, c);
+        ACTIONS_TEST.enrgCours(j1, c1);
+        float res = ACTIONS_TEST.valeur(j);
+        float expRes = c;
+        Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");
     }
+
     /**
      * Tester la méthode enregistrer un cours.
      */
     @Test
-     final void testEnregistrerCours() {
+    final void testEnregistrerCours() {
         Jour jour1 = new Jour(2023, 15);
 
         float valeur1 = 50;
@@ -69,7 +72,7 @@ public class ActionSimpleTest {
      * Teste.r la méthode valeur pour connaitre la valeur d'une action.
      */
     @Test
-     final void testValeur2() {
+    final void testValeur2() {
         Jour jour2 = new Jour(2023, 16);
 
         float valeur2 = 0;
@@ -85,7 +88,7 @@ public class ActionSimpleTest {
      * Tester la méthode getLibelle pour connaitre le libelle d'une action.
      */
     @Test
-     final void testGetLibelle() {
+    final void testGetLibelle() {
         ActionSimple actionsimple3 = new ActionSimple("France 3");
 
         String libelle = "France 3";
@@ -95,11 +98,11 @@ public class ActionSimpleTest {
         Assertions.assertEquals(libelle, result3, "Le libellé récupéré n'est pas le même ");
     }
 
-     /**
-      * valeur max du portefeuille.
-      */
+    /**
+     * valeur max du portefeuille.
+     */
     @Test
-     final void testValeurMax() {
+    final void testValeurMax() {
         ActionSimple france2;
         Jour jour1;
 
@@ -115,11 +118,11 @@ public class ActionSimpleTest {
         p = new Portefeuille();
         p.acheter(france2, 10);
         p.acheter(france2, 30);
-      
+
         float val = france2.valeurMaxActionSimple();
         float res = 200;
 
-        Assertions.assertEquals( val , res , "Erreur ! valeur max non calculé");
+        Assertions.assertEquals(val, res, "Erreur ! valeur max non calculé");
 
     }
 }

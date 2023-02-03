@@ -22,30 +22,28 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
-
-
-
 /**
  *
  * @author David_C
  */
 final class PortefeuilleTest {
+
     /**
-     * 
+     *
      */
     private static final Jour TEST_J1 = new Jour(2014, 1);
-    
+
     /**
      * Tests.
      */
-     PortefeuilleTest() {   
-     }
+    PortefeuilleTest() {
+    }
+
     /**
      * consulter ventes.
      */
     @Test
-     void testConsultationVentes() {
+    void testConsultationVentes() {
         ActionSimple france2;
         ActionSimple france3;
         Jour j1;
@@ -65,7 +63,7 @@ final class PortefeuilleTest {
         p.acheter(france3, 10);
         p.acheter(france2, 20);
         HashMap<Action, Jour> res = new HashMap<>();
-        res = (HashMap<Action, Jour>) p.vendre(france2,5);
+        res = (HashMap<Action, Jour>) p.vendre(france2, 5);
         int valeur = res.size();
         Assertions.assertEquals(valeur, res.size());
     }
@@ -74,7 +72,7 @@ final class PortefeuilleTest {
      * Quantite.
      */
     @Test
-     void testGetQte() {
+    void testGetQte() {
 
         ActionSimple actionSimple = new ActionSimple("TF1");
 
@@ -92,10 +90,10 @@ final class PortefeuilleTest {
     }
 
     /**
-     * vérifier que  l'action existe déjà dans le portefeuille.
+     * vérifier que l'action existe déjà dans le portefeuille.
      */
     @Test
-     void testAcheter() {
+    void testAcheter() {
         //
         ActionSimple actionSimple = new ActionSimple("TF1");
 
@@ -110,12 +108,12 @@ final class PortefeuilleTest {
 
         Assertions.assertEquals(qte1, result1, "quantité récupérée n'a pas fait la somme de la quantité déjà existance");
     }
- 
-     /**
+
+    /**
      * méthode vendre fonctionne quand on vends une quantité inf à la qte ex.
      */
     @Test
-     void testVendre() {
+    void testVendre() {
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
         portefeuille1.acheter(actionSimple, 7);
@@ -132,7 +130,7 @@ final class PortefeuilleTest {
      * methode vente.
      */
     @Test
-     void testVendreTout() {
+    void testVendreTout() {
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
 
@@ -146,11 +144,11 @@ final class PortefeuilleTest {
         Assertions.assertEquals(qte3, result3, "la quantité récupérée n'est pas égale à 0");
     }
 
-     /**
+    /**
      * Test permettant de verifier la valeur du portefeuille.
      */
     @Test
-     void testGetValeurPortefeuille() {
+    void testGetValeurPortefeuille() {
         ActionSimple france2;
         ActionSimple france3;
 
@@ -169,21 +167,22 @@ final class PortefeuilleTest {
         float res = p.valeur(TEST_J1);
         Assertions.assertEquals(res, valeur);
     }
-     
-     /**
-      * test pour vérifier que la méthode acheter et la methode getActionsPortfeuillefonctionne 
-      */
+
+    /**
+     * test pour vérifier que la méthode acheter et la methode
+     * getActionsPortfeuillefonctionne
+     */
     @Test
     void testAcheterM() {
         Portefeuille portefeuille1 = new Portefeuille();
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
-        
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -203,20 +202,21 @@ final class PortefeuilleTest {
     }
 
     /**
-     * Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité inférieure à la quantité existante
+     * Test pour vérifier que la méthode vendre fonctionne quand on vends une
+     * quantité inférieure à la quantité existante
      */
     @Test
-     void testVendreM() {
+    void testVendreM() {
 
         Portefeuille portefeuille1 = new Portefeuille();
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
-        
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -224,10 +224,10 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
+
         portefeuille1.vendre(tf1, jour4, 2);
         portefeuille1.vendre(france2, jour4, 1);
-                
+
         HashMap<Action, Integer> resultAttendu = new HashMap<>();
         resultAttendu.put(france2, 11);
         resultAttendu.put(france3, 10);
@@ -238,9 +238,10 @@ final class PortefeuilleTest {
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
 
     }
-    
+
     /**
-     * Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité inférieure à la quantité existante
+     * Test pour vérifier que la méthode vendre fonctionne quand on vends une
+     * quantité inférieure à la quantité existante
      */
     @Test
     void testVendreToutLaQtéDuneAction() {
@@ -249,11 +250,11 @@ final class PortefeuilleTest {
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
-        
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -261,35 +262,34 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
+
         portefeuille1.vendre(tf1, jour4, 5);
-                
+
         HashMap<Action, Integer> resultAttendu = new HashMap<>();
         resultAttendu.put(france2, 12);
         resultAttendu.put(france3, 10);
-
 
         Map<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
 
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
 
     }
-    
+
     /**
-     * 
+     *
      */
     @Test
-    void testVenteJour(){
-        
+    void testVenteJour() {
+
         Portefeuille portefeuille1 = new Portefeuille();
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -306,7 +306,7 @@ final class PortefeuilleTest {
         resultAttendu.add(vente3);
         resultAttendu.add(vente2);
         resultAttendu.add(vente1);
-        
+
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
@@ -314,22 +314,22 @@ final class PortefeuilleTest {
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
-    
+
     /**
-     * 
+     *
      */
     @Test
-    void testVenteJourFaux(){
-        
+    void testVenteJourFaux() {
+
         Portefeuille portefeuille1 = new Portefeuille();
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -344,7 +344,7 @@ final class PortefeuilleTest {
 
         resultAttendu.add(vente3);
         resultAttendu.add(vente2);
-        
+
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
@@ -352,22 +352,22 @@ final class PortefeuilleTest {
         Assertions.assertTrue(result1.containsAll(resultAttendu));
 
     }
-    
+
     /**
-     * 
+     *
      */
-    @Test 
-    void testDerniereVentes(){
-        
+    @Test
+    void testDerniereVentes() {
+
         Portefeuille portefeuille1 = new Portefeuille();
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -384,29 +384,28 @@ final class PortefeuilleTest {
         resultAttendu.add(vente4);
         resultAttendu.add(vente2);
         resultAttendu.add(vente1);
-        
+
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
         portefeuille1.vendre(france3, jour2, 5);
-        
+
         List<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
         Assertions.assertFalse(resultAttendu.containsAll(result1));
     }
-    
-      @Test
+
+    @Test
     void testAcheterEtgetActionsPortefeuille() {
         //test pour vérifier que la méthode acheter et la methode getActionsPortfeuillefonctionne 
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
-        
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -425,20 +424,17 @@ final class PortefeuilleTest {
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
     }
 
+    void testDerniereVentesFaux() {
 
-    
-    public void testDerniereVentesFaux(){
-        
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -448,38 +444,34 @@ final class PortefeuilleTest {
         portefeuille1.acheter(france2, jour4, 5);
 
         ArrayList<Portefeuille.Vente> resultAttendu = new ArrayList();
-        Portefeuille.Vente vente1 = new Portefeuille.Vente(tf1, jour2, 1);
         Portefeuille.Vente vente2 = new Portefeuille.Vente(france2, jour2, 3);
-        Portefeuille.Vente vente3 = new Portefeuille.Vente(france2, jour2, 1);
         Portefeuille.Vente vente4 = new Portefeuille.Vente(france3, jour2, 5);
 
         resultAttendu.add(vente4);
         resultAttendu.add(vente2);
-        
-        
+
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
         portefeuille1.vendre(france3, jour2, 5);
-        
+
         List<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
-    
+
     @Test
-    public void testDernierAchats(){
-        
+    void testDernierAchats() {
+
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -487,38 +479,34 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
-        Portefeuille.Achat achat1 = new Portefeuille.Achat(france2, jour1, 2);
-        Portefeuille.Achat achat2 = new Portefeuille.Achat(france3, jour2, 5);
-        Portefeuille.Achat achat3 = new Portefeuille.Achat(france2, jour2, 5);
+
         Portefeuille.Achat achat4 = new Portefeuille.Achat(tf1, jour3, 5);
         Portefeuille.Achat achat5 = new Portefeuille.Achat(france3, jour4, 5);
         Portefeuille.Achat achat6 = new Portefeuille.Achat(france2, jour4, 5);
-        
+
         ArrayList<Portefeuille.Achat> resultAttendu = new ArrayList();
 
         resultAttendu.add(achat4);
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
-              
+
         List<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
-    
+
     @Test
-    public void testDernierAchatsFaux(){
-        
+    void testDernierAchatsFaux() {
+
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -526,38 +514,34 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
-        Portefeuille.Achat achat1 = new Portefeuille.Achat(france2, jour1, 2);
-        Portefeuille.Achat achat2 = new Portefeuille.Achat(france3, jour2, 5);
+
         Portefeuille.Achat achat3 = new Portefeuille.Achat(france2, jour2, 5);
-        Portefeuille.Achat achat4 = new Portefeuille.Achat(tf1, jour3, 5);
         Portefeuille.Achat achat5 = new Portefeuille.Achat(france3, jour4, 5);
         Portefeuille.Achat achat6 = new Portefeuille.Achat(france2, jour4, 5);
-        
+
         ArrayList<Portefeuille.Achat> resultAttendu = new ArrayList();
 
         resultAttendu.add(achat3);
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
-              
+
         List<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
         Assertions.assertFalse(resultAttendu.containsAll(result1));
 
     }
-    
+
     @Test
-    public void testAchatJour(){
-        
+    void testAchatJour() {
+
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -565,36 +549,32 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
-        Portefeuille.Achat achat1 = new Portefeuille.Achat(france2, jour1, 2);
-        Portefeuille.Achat achat2 = new Portefeuille.Achat(france3, jour2, 5);
-        Portefeuille.Achat achat3 = new Portefeuille.Achat(france2, jour2, 5);
-        Portefeuille.Achat achat4 = new Portefeuille.Achat(tf1, jour3, 5);
+
         Portefeuille.Achat achat5 = new Portefeuille.Achat(france3, jour4, 5);
         Portefeuille.Achat achat6 = new Portefeuille.Achat(france2, jour4, 5);
-        
+
         ArrayList<Portefeuille.Achat> resultAttendu = new ArrayList();
 
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
-              
+
         List<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
         Assertions.assertTrue(result1.containsAll(resultAttendu));
 
     }
+
     @Test
-    public void testAchatJourFaux(){
-        
+    void testAchatJourFaux() {
+
         Portefeuille portefeuille1 = new Portefeuille();
-        ActionSimple actionSimple = new ActionSimple("TF1");
         ActionSimple france2 = new ActionSimple("France2");
         ActionSimple france3 = new ActionSimple("France3");
         ActionSimple tf1 = new ActionSimple("TF1");
 
-        Jour jour1 = new Jour(2023,01);
-        Jour jour2 = new Jour(2023,02);
-        Jour jour3 = new Jour(2023,15);
-        Jour jour4 = new Jour(2023,30);
+        Jour jour1 = new Jour(2023, 01);
+        Jour jour2 = new Jour(2023, 02);
+        Jour jour3 = new Jour(2023, 15);
+        Jour jour4 = new Jour(2023, 30);
 
         portefeuille1.acheter(france2, jour1, 2);
         portefeuille1.acheter(france3, jour2, 5);
@@ -602,23 +582,17 @@ final class PortefeuilleTest {
         portefeuille1.acheter(tf1, jour3, 5);
         portefeuille1.acheter(france3, jour4, 5);
         portefeuille1.acheter(france2, jour4, 5);
-        
-        Portefeuille.Achat achat1 = new Portefeuille.Achat(france2, jour1, 2);
-        Portefeuille.Achat achat2 = new Portefeuille.Achat(france3, jour2, 5);
-        Portefeuille.Achat achat3 = new Portefeuille.Achat(france2, jour2, 5);
+
         Portefeuille.Achat achat4 = new Portefeuille.Achat(tf1, jour3, 5);
-        Portefeuille.Achat achat5 = new Portefeuille.Achat(france3, jour4, 5);
         Portefeuille.Achat achat6 = new Portefeuille.Achat(france2, jour4, 5);
-        
+
         ArrayList<Portefeuille.Achat> resultAttendu = new ArrayList();
 
         resultAttendu.add(achat4);
         resultAttendu.add(achat6);
-              
+
         List<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
         Assertions.assertFalse(result1.containsAll(resultAttendu));
     }
-    
-    
-}
 
+}

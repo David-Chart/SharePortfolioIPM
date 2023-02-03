@@ -19,7 +19,8 @@ import java.util.TreeMap;
  * @author perussel
  */
 public class Portefeuille {
-        /**
+
+    /**
      * Map stockant les ventes.
      */
     private Map<Long, Vente> ventes;
@@ -27,8 +28,6 @@ public class Portefeuille {
      * Map stockant les achats.
      */
     private Map<Long, Achat> achats;
-    /**
-     * Sous objet ligne portefeuille.
 
     /**
      * Map stockant les ligne du portefeuille.
@@ -44,6 +43,7 @@ public class Portefeuille {
          * Attribut action.
          */
         private final Action action;
+
         /**
          * Attribut qté.
          */
@@ -59,8 +59,7 @@ public class Portefeuille {
         }
 
         /**
-         * @param quantite
-         * Setteur of qté.
+         * @param quantite Setteur of qté.
          */
         public void setQte(final int quantite) {
             this.qte = quantite;
@@ -89,23 +88,24 @@ public class Portefeuille {
             return Integer.toString(qte);
         }
     }
-    
-        /**
+
+    /**
      * Intern class vente.
      */
     public static class Vente {
+
         /**
-        * Attribut action.
-        */
-       private final Action action;
-       /**
-        * Attribut Jour.
-        */
-       private Jour jour;
-       /**
-        * Attribut qté.
-        */
-       private int qte;
+         * Attribut action.
+         */
+        private final Action action;
+        /**
+         * Attribut Jour.
+         */
+        private Jour jour;
+        /**
+         * Attribut qté.
+         */
+        private int qte;
 
         @Override
         public int hashCode() {
@@ -136,17 +136,19 @@ public class Portefeuille {
             }
             return Objects.equals(this.jour, other.jour);
         }
-       
-       
-       /**
-        * getteur of quantité.
-        * @return la quantité
-        */
-       public int getQte() {
+
+        /**
+         * getteur of quantité.
+         *
+         * @return la quantité
+         */
+        public int getQte() {
             return qte;
         }
+
         /**
          * Setteur of qté.
+         *
          * @param qte
          */
         public void setQte(int qte) {
@@ -155,28 +157,34 @@ public class Portefeuille {
 
         /**
          * Getter of Action.
+         *
          * @return Action
          */
         public Action getAction() {
             return this.action;
         }
+
         /**
-         * Getter of Jour
-         * @return 
+         * Getter of Jour.
+         *
+         * @return
          */
-        public Jour getJour(){
+        public Jour getJour() {
             return this.jour;
         }
-        
+
         /**
-         * Setter of Jour
+         * Setter of Jour.
+         *
          * @param jour
          */
-        public void setJour(Jour jour){
+        public void setJour(Jour jour) {
             this.jour = jour;
         }
+
         /**
          * Constructor.
+         *
          * @param action
          * @param jour
          * @param qte
@@ -191,26 +199,26 @@ public class Portefeuille {
         public String toString() {
             return "Vente{" + "action=" + action + ", jour=" + jour + ", qte=" + qte + '}';
         }
-        
 
     }
-    
-      /**
+
+    /**
      * Intern class Achat.
      */
     public static class Achat {
+
         /**
-        * Attribut Action.
-        */
-       private final Action action;
-       /**
-        * Attribut Jour.
-        */
-       private Jour jour;
-       /**
-        * Attribut qté.
-        */
-       private int qte;
+         * Attribut Action.
+         */
+        private final Action action;
+        /**
+         * Attribut Jour.
+         */
+        private Jour jour;
+        /**
+         * Attribut qté.
+         */
+        private int qte;
 
         @Override
         public int hashCode() {
@@ -241,17 +249,19 @@ public class Portefeuille {
             }
             return Objects.equals(this.jour, other.jour);
         }
-       
-       
-       /**
-        * getteur of quantité.
-        * @return la quantité
-        */
-       public int getQte() {
+
+        /**
+         * getteur of quantité.
+         *
+         * @return la quantité
+         */
+        public int getQte() {
             return qte;
         }
+
         /**
          * Setteur of qté.
+         *
          * @param qte
          */
         public void setQte(int qte) {
@@ -260,30 +270,34 @@ public class Portefeuille {
 
         /**
          * Getter of Action.
+         *
          * @return Action
          */
         public Action getAction() {
             return this.action;
         }
-        
+
         /**
          * Getter of Jour
-         * @return 
+         *
+         * @return
          */
-        public Jour getJour(){
+        public Jour getJour() {
             return this.jour;
         }
-        
+
         /**
          * Setter of Jour
+         *
          * @param jour
          */
-        public void setJour(Jour jour){
+        public void setJour(Jour jour) {
             this.jour = jour;
         }
-        
+
         /**
          * Constructor.
+         *
          * @param action
          * @param jour
          * @param qte
@@ -294,7 +308,7 @@ public class Portefeuille {
             this.qte = qte;
         }
 
-       @Override
+        @Override
         public String toString() {
             return Integer.toString(qte);
         }
@@ -309,34 +323,33 @@ public class Portefeuille {
         this.ventes = new HashMap<>();
         this.achats = new HashMap<>();
     }
-    
-    
+
     /**
      * Methode qui retourne les actions et la qté dans un portefeuille
-     * @return 
+     *
+     * @return
      */
-    public Map<Action, Integer> getActionsPortefeuille(){
+    public Map<Action, Integer> getActionsPortefeuille() {
         HashMap<Action, Integer> resultat = new HashMap<>();
-        for(Entry<Action,LignePortefeuille> a : this.mapLignes.entrySet()){
+        for (Entry<Action, LignePortefeuille> a : this.mapLignes.entrySet()) {
             resultat.put(a.getKey(), a.getValue().getQte());
         }
         return resultat;
     }
-    
-      /**
+
+    /**
      * Methode qui retourne les achats à un jour donnée.
      */
     public List<Achat> achatJour(Jour jour) {
         ArrayList<Achat> res = new ArrayList<>();
-        for (Entry<Long,Achat> map : this.achats.entrySet() ){
+        for (Entry<Long, Achat> map : this.achats.entrySet()) {
             if (map.getValue().getJour().equals(jour)) {
                 res.add(map.getValue());
             }
         }
         return res;
     }
-    
-    
+
     /**
      * Methode qui retourne les vente à un jour donnée.
      */
@@ -344,18 +357,18 @@ public class Portefeuille {
 
         ArrayList<Vente> res = new ArrayList<>();
 
-        for (Entry<Long,Vente> map : this.ventes.entrySet() ){
+        for (Entry<Long, Vente> map : this.ventes.entrySet()) {
             if (map.getValue().getJour().equals(jour)) {
                 res.add(map.getValue());
-                
+
             }
         }
         return res;
     }
-    
-    
-      /**
+
+    /**
      * Methode for buying action in portefeuille.
+     *
      * @param a
      * @param q
      */
@@ -365,50 +378,50 @@ public class Portefeuille {
         } else {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
         }
-        this.achats.put(System.nanoTime(), new Achat (a,jour,q));
+        this.achats.put(System.nanoTime(), new Achat(a, jour, q));
     }
-    
-    
-        /**
-     * Methode qui retourne les trois derniere ventes.
-     * @return
-     */
-    public List<Vente> derniereVentes(){
-       int count = 0;
-       Map<Long, Vente> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
-       ArrayList<Vente> res = new ArrayList<>();
-       sortedMap.putAll(this.ventes);
-       for (Entry<Long,Vente> v : sortedMap.entrySet()) {
-           if (count >= 3) {
-                break;
-            }
-           System.out.println(v.getValue());
-           res.add(v.getValue());
-           count++;
-       }
-       return res; 
-   }
-    
-   /**
-     * Methode qui retourne les trois dernier achats.
-     * @return
-     */
-    public List<Achat> dernierAchats(){
-       int count = 0;
-       Map<Long, Achat> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
-       ArrayList<Achat> res = new ArrayList<>();
-       sortedMap.putAll(this.achats);
-       for (Entry<Long, Achat> a : sortedMap.entrySet()) {
-           if (count >= 3) {
-                break;
-            }
-           res.add(a.getValue());
-           count++;
-       }
-       return res;
-   }
 
-       /**
+    /**
+     * Methode qui retourne les trois derniere ventes.
+     *
+     * @return
+     */
+    public List<Vente> derniereVentes() {
+        int count = 0;
+        Map<Long, Vente> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
+        ArrayList<Vente> res = new ArrayList<>();
+        sortedMap.putAll(this.ventes);
+        for (Entry<Long, Vente> v : sortedMap.entrySet()) {
+            if (count >= 3) {
+                break;
+            }
+            res.add(v.getValue());
+            count++;
+        }
+        return res;
+    }
+
+    /**
+     * Methode qui retourne les trois dernier achats.
+     *
+     * @return
+     */
+    public List<Achat> dernierAchats() {
+        int count = 0;
+        Map<Long, Achat> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
+        ArrayList<Achat> res = new ArrayList<>();
+        sortedMap.putAll(this.achats);
+        for (Entry<Long, Achat> a : sortedMap.entrySet()) {
+            if (count >= 3) {
+                break;
+            }
+            res.add(a.getValue());
+            count++;
+        }
+        return res;
+    }
+
+    /**
      * Methode for buying action in portefeuille.
      *
      * @param a
@@ -424,6 +437,7 @@ public class Portefeuille {
 
     /**
      * Mehtode for selling actions in portefeuille.
+     *
      * @param a
      * @param jour
      * @param q
@@ -435,10 +449,10 @@ public class Portefeuille {
             } else if (this.mapLignes.get(a).getQte() == q) {
                 this.mapLignes.remove(a);
             }
-            this.ventes.put(System.nanoTime(), new Vente (a,jour,q));
+            this.ventes.put(System.nanoTime(), new Vente(a, jour, q));
         }
     }
-    
+
     /**
      * @param a
      * @param q
@@ -484,6 +498,7 @@ public class Portefeuille {
 
     /**
      * methode qui retourne la valeur total des actions du portefeuille.
+     *
      * @param j
      * @return valeur total
      */
@@ -509,7 +524,6 @@ public class Portefeuille {
         return listeActions;
     }
 
-
     /**
      * @param a
      * @return Hashmap
@@ -522,24 +536,40 @@ public class Portefeuille {
         }
     }
 
-    public Map<Long, Vente> getVentes() {
+    /**
+     * @return ventes
+     */
+    public final Map<Long, Vente> getVentes() {
         return ventes;
     }
 
-    public void setVentes(Map<Long, Vente> ventes) {
+    /**
+     * @param ventes 
+     */
+    public final void setVentes(final Map<Long, Vente> ventes) {
         this.ventes = ventes;
     }
 
-    public Map<Long, Achat> getAchats() {
+    /**
+     * @return achats
+     */
+    public final Map<Long, Achat> getAchats() {
         return achats;
     }
 
-    public void setAchats(Map<Long, Achat> achats) {
-        this.achats = achats;
+    /**
+     * @param achat 
+     */
+    public final void setAchats(final Map<Long, Achat> achat) {
+        this.achats = achat;
     }
 
+    /**
+     * hashcode.
+     * @return hash
+     */
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int hash = 5;
         hash = 67 * hash + Objects.hashCode(this.ventes);
         hash = 67 * hash + Objects.hashCode(this.achats);
@@ -547,8 +577,12 @@ public class Portefeuille {
         return hash;
     }
 
+    /**
+     * @param obj
+     * @return 
+     */
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -568,5 +602,4 @@ public class Portefeuille {
         return Objects.equals(this.mapLignes, other.mapLignes);
     }
 
-    
 }

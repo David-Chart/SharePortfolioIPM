@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package metier;
 
 import java.util.HashMap;
@@ -30,25 +29,20 @@ public class ActionSimple extends Action {
         // init spécifique
         this.mapCours = new HashMap<>();
     }
+
     /**
-     * 
-     * @return 
+     * @return max valeur action simple
      */
-    public float valeurMaxActionSimple() {
+    public final float valeurMaxActionSimple() {
         float max = 0;
-         for (Cours a : mapCours.values()) {
-             if(a.getValeur() >= max){
-                 max = a.getValeur();
-             }
+        for (Cours a : mapCours.values()) {
+            if (a.getValeur() >= max) {
+                max = a.getValeur();
+            }
         }
         return max;
     }
-    /**
-     * 
-     * @return 
-     */
 
-    
     /**
      * enrg possible si pas de cours pour ce jour.
      * @param j
@@ -61,12 +55,11 @@ public class ActionSimple extends Action {
     }
 
     /**
-     *
      * @param j
      * @return hashmap cours
      */
     @Override
-    public float valeur(Jour j) {
+    public final float valeur(Jour j) {
         if (this.mapCours.containsKey(j)) {
             return this.mapCours.get(j).getValeur();
         } else {
@@ -78,6 +71,7 @@ public class ActionSimple extends Action {
      * encapsulation de la définition de la classe Cours.
      */
     private class Cours {
+
         /**
          * attribut Jour jour.
          */
@@ -86,6 +80,7 @@ public class ActionSimple extends Action {
          * Atribut valeur.
          */
         private final float valeur;
+
         /**
          * Getter of valeur.
          * @return valeur
@@ -93,6 +88,7 @@ public class ActionSimple extends Action {
         public float getValeur() {
             return valeur;
         }
+
         /**
          * Getter jour.
          * @return Jour jour
@@ -100,6 +96,7 @@ public class ActionSimple extends Action {
         public Jour getJour() {
             return jour;
         }
+
         /**
          * Constructor.
          * @param j

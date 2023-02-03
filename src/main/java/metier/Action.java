@@ -66,7 +66,6 @@ public abstract class Action {
         return Objects.equals(libelle, action.libelle);
     }
     /**
-     *
      * @return le libelle d'une action
      */
     @Override
