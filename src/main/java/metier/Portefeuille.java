@@ -8,6 +8,7 @@ package metier;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -314,7 +315,7 @@ public class Portefeuille {
      * Methode qui retourne les actions et la qté dans un portefeuille
      * @return 
      */
-    public HashMap<Action, Integer> getActionsPortefeuille(){
+    public Map<Action, Integer> getActionsPortefeuille(){
         HashMap<Action, Integer> resultat = new HashMap<>();
         for(Entry<Action,LignePortefeuille> a : this.mapLignes.entrySet()){
             resultat.put(a.getKey(), a.getValue().getQte());
@@ -325,7 +326,7 @@ public class Portefeuille {
       /**
      * Methode qui retourne les achats à un jour donnée.
      */
-    public ArrayList<Achat> achatJour(Jour jour) {
+    public List<Achat> achatJour(Jour jour) {
         ArrayList<Achat> res = new ArrayList<>();
         for (Entry<Long,Achat> map : this.achats.entrySet() ){
             if (map.getValue().getJour().equals(jour)) {
@@ -339,9 +340,9 @@ public class Portefeuille {
     /**
      * Methode qui retourne les vente à un jour donnée.
      */
-    public ArrayList<Vente> venteJour(Jour jour) {
+    public List<Vente> venteJour(Jour jour) {
 
-        ArrayList<Vente> res = new ArrayList();
+        ArrayList<Vente> res = new ArrayList<>();
 
         for (Entry<Long,Vente> map : this.ventes.entrySet() ){
             if (map.getValue().getJour().equals(jour)) {
@@ -372,12 +373,18 @@ public class Portefeuille {
      * Methode qui retourne les trois derniere ventes.
      * @return
      */
-    public ArrayList<Vente> derniereVentes(){
+    public List<Vente> derniereVentes(){
+       int count = 0;
        Map<Long, Vente> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
        ArrayList<Vente> res = new ArrayList<>();
        sortedMap.putAll(this.ventes);
-       for (int i = 0; i> 3; i++) {
-           res.add(sortedMap.get(i));
+       for (Entry<Long,Vente> v : sortedMap.entrySet()) {
+           if (count >= 3) {
+                break;
+            }
+           System.out.println(v.getValue());
+           res.add(v.getValue());
+           count++;
        }
        return res; 
    }
@@ -386,7 +393,7 @@ public class Portefeuille {
      * Methode qui retourne les trois dernier achats.
      * @return
      */
-    public ArrayList<Achat> dernierAchats(){
+    public List<Achat> dernierAchats(){
        int count = 0;
        Map<Long, Achat> sortedMap = new TreeMap<>((o1, o2) -> o2.compareTo(o1));
        ArrayList<Achat> res = new ArrayList<>();
@@ -395,7 +402,6 @@ public class Portefeuille {
            if (count >= 3) {
                 break;
             }
-           System.out.println(a.getValue());
            res.add(a.getValue());
            count++;
        }
