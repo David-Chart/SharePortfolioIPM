@@ -136,6 +136,9 @@ public class Portefeuille {
         for (LignePortefeuille lp : this.mapLignes.values()) {
             total = total + (lp.getQte() * lp.getAction().valeur(j));
         }
+        for (Map.Entry<Action, LignePortefeuille> entry : mapLignes.entrySet()) {
+            System.err.println("entry = " + entry);
+        }
         return total;
     }
 
@@ -179,20 +182,7 @@ public class Portefeuille {
         }
     }
     
-        /**
-     * 
-     * @param j
-     * @return 
-     */
-    public float valeurMaxPortefeuille(Jour j) {
-        float max = 0;
-         for (Action a : mapLignes.keySet()) {
-             if(a.valeur(j) >= max){
-                 max = a.valeur(j);
-             }
-        }
-        return max;
-    }
+
 
     /**
      * 

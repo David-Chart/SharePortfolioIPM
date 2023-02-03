@@ -16,7 +16,9 @@
 package metier;
 
 import java.util.HashMap;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
@@ -28,75 +30,18 @@ import org.junit.jupiter.api.Test;
  * @author David_C
  */
 public final class PortefeuilleTest {
-
+private static final Jour TEST_J1 = new Jour(2014, 1);
     /**
      * Tests.
      */
     public PortefeuilleTest() {    }
 
-    /**
-     * ANNEE.
-     */
-    private static final int ANNEE = 2014;
-    /**
-     * JOUR.
-     */
-    private static final int JOURS = 1;
-    /**
-     * VALEUR1.
-     */
-    private static final int VALEUR1 = 200;
-    /**
-     * VALEUR2.
-     */
-    private static final int VALEUR2 = 100;
-    /**
-     * QTE1.
-     */
-    private static final int QTE1 = 10;
-    /**
-     * QTE2.
-     */
-    private static final int QTE2 = 20;
-    /**
-     * valeur.
-     */
-    private static final float val = 4000;
-
-
-
-    /**
-     * Test permettant de verifier la valeur du portefeuille.
-     */
-    @Test
-    void testGetValeurPortefeuille() {
-        ActionSimple France2;
-        ActionSimple France3;
-        Jour j1;
-
-        // init des objets metiers Jour
-        j1 = new Jour(ANNEE, JOURS);
-
-        // creation d'actions simples et composée
-        France2 = new ActionSimple("France2");
-        France3 = new ActionSimple("France3");
-
-        France3.enrgCours(j1, VALEUR1);
-        France2.enrgCours(j1, VALEUR2);
-
-        Portefeuille p;
-        p = new Portefeuille();
-        p.acheter(France3, QTE1);
-        p.acheter(France2, QTE2);
-
-        float res = p.valeur(j1);
-        System.out.println(res);
-        Assertions.assertEquals(val, res);
-    }
+ 
 
     /**
      * consulter ventes.
      */
+
     @Test
     public void testConsultationVentes() {
         ActionSimple France2;
@@ -104,53 +49,26 @@ public final class PortefeuilleTest {
         Jour j1;
 
         // init des objets metiers Jour
-        j1 = new Jour(ANNEE, JOURS);
+        j1 = new Jour(2014, 1);
 
         // creation d'actions simples et composée
         France2 = new ActionSimple("France2");
         France3 = new ActionSimple("France3");
 
-        France3.enrgCours(j1, VALEUR1);
-        France2.enrgCours(j1, VALEUR2);
+        France3.enrgCours(j1, 200);
+        France2.enrgCours(j1, 100);
 
         Portefeuille p;
         p = new Portefeuille();
-        p.acheter(France3, QTE1);
-        p.acheter(France2, QTE2);
+        p.acheter(France3, 10);
+        p.acheter(France2, 20);
         HashMap<Action, Jour> res = new HashMap<>();
         res = (HashMap<Action, Jour>) p.vendre(France2,5);
         int valeur = res.size();
         Assertions.assertEquals(valeur, res.size());
     }
 
-    /**
-     * valeur mx action portefeuille.
-     */
-    @Test
-    void testValeurMax() {
-        ActionSimple France2;
-        ActionSimple France3;
-        Jour j1;
 
-        // init des objets metiers Jour
-        j1 = new Jour(ANNEE, JOURS);
-
-        // creation d'actions simples et composée
-        France2 = new ActionSimple("France2");
-        France3 = new ActionSimple("France3");
-
-        France3.enrgCours(j1, VALEUR1);
-        France2.enrgCours(j1, VALEUR2);
-        Portefeuille p;
-        p = new Portefeuille();
-        p.acheter(France3, QTE1);
-        p.acheter(France2, QTE2);
-        float values = p.valeurMaxPortefeuille(j1);
-        float res = val;
-        System.out.print(values);
-        Assertions.assertEquals(values, res);
-
-    }
 
     /**
      * Quantite.
@@ -229,6 +147,31 @@ public final class PortefeuilleTest {
 
         Assertions.assertEquals(qte3, result3, "la quantité récupérée n'est pas égale à 0");
 
+    }
+    
+       /**
+     * Test permettant de verifier la valeur du portefeuille.
+     */
+    @Test
+    public void testGetValeurPortefeuille() {
+        ActionSimple France2;
+        ActionSimple France3;
+
+        // creation d'actions simples et composée
+        France2 = new ActionSimple("France2");
+        France3 = new ActionSimple("France3");
+        
+        France3.enrgCours(TEST_J1, 200);
+        France2.enrgCours(TEST_J1, 100);
+
+        Portefeuille p;
+        p = new Portefeuille();
+        p.acheter(France3, 10);
+        p.acheter(France2, 20);
+
+        float valeur = 4000;
+        float res = p.valeur(TEST_J1);
+        Assertions.assertEquals(res, valeur);
     }
 }
 

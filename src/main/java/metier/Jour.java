@@ -12,8 +12,8 @@ package metier;
  */
 public class Jour {
 
-    public static int HASH = 7;
-    public static int VALEUR = 61;
+    public final static int HASH = 7;
+    public final static int VALEUR = 61;
 
     /**
      * année du jour.
@@ -56,9 +56,10 @@ public class Jour {
 
     @Override
     public final int hashCode() {
-        HASH = VALEUR * HASH + this.annee;
-        HASH = VALEUR * HASH + this.noJour;
-        return HASH;
+        int answer = HASH;
+        answer = VALEUR * answer + this.annee;
+        answer = VALEUR * answer + this.noJour;
+        return answer;
     }
 
     /**
@@ -75,9 +76,7 @@ public class Jour {
             return false;
         }
         final Jour other = (Jour) obj;
-        if (this.annee != other.annee) {
-            return false;
-        }
-        return this.noJour == other.noJour;
+        return (this.annee == other.annee) && (this.noJour == other.noJour);
     }
+   
 }

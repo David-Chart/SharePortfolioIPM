@@ -30,7 +30,28 @@ public class ActionSimple extends Action {
         // init spécifique
         this.mapCours = new HashMap<>();
     }
+    /**
+     * 
+     * @return 
+     */
+    public float valeurMaxActionSimple() {
+        float max = 0;
+        float min = 0;
+         for (Cours a : mapCours.values()) {
+             if(a.getValeur() >= max){
+                 max = a.getValeur();
+             }else{
+                 min = a.getValeur();
+             }
+        }
+        return max;
+    }
+    /**
+     * 
+     * @return 
+     */
 
+    
     /**
      * enrg possible si pas de cours pour ce jour.
      * @param j

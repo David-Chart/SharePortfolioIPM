@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package exec;
-
+/**
 import metier.ActionComposee;
 import metier.ActionSimple;
 import metier.Jour;
@@ -65,4 +65,4 @@ public class Run {
         
     }
 
-}
+}**/

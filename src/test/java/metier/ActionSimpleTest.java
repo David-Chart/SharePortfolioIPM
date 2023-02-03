@@ -8,60 +8,27 @@ import org.junit.jupiter.api.Test;
  * @author David_C
  */
 public class ActionSimpleTest {
-    /**
-     * ANNEE.
-     */
-    private static final int ANNEE = 2023;
-    /**
-     * JOUR.
-     */
-    private static final int JOURS = 15;
-    /**
-     * jours.
-     */
-    private static final int JOURS1 = 1;
-    Jour j = new Jour(2023,1);
-    float c = 20.0f;
-    Jour j1 = new Jour(2023,3);
-    float c1 = 30.0f;
-    /**
-     * VALEUR1.
-     */
-    private static final int VALEUR1 = 200;
-    /**
-     * VALEUR2.
-     */
-    private static final int VALEUR2 = 100;
-    /**
-     * QTE1.
-     */
-    private static final int QTE1 = 10;
-    /**
-     * QTE2.
-     */
-    private static final int QTE2 = 20;
-    /**
-     * valeur.
-     */
-    private static final float VAL = 4000;
-        /**
+            /**
      * ActionSimple.
      */
     public static final ActionSimple  ACTIONS_TEST = new ActionSimple("TF1");
-
     /**
-     * C.
+     * 
      */
-    private static final float C = 20.0f;
-
+    Jour j = new Jour(2023,1);
     /**
-     * c1.
+     * 
      */
-    private static final float C1 = 30.0f;
-
+    float c = 20.0f;
     /**
-     * constructeur.
+     * 
      */
+    Jour j1 = new Jour(2023,3);
+    /**
+     * 
+     */
+    float c1 = 30.0f;
+
     public ActionSimpleTest() { }
 
     /**
@@ -75,6 +42,8 @@ public class ActionSimpleTest {
     float expRes = c;
     Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");
     }
+    
+    
 
     /**
      * Tester la méthode enregistrer un cours.
@@ -91,7 +60,7 @@ public class ActionSimpleTest {
 
         float result = actionSimple1.valeur(jour1);
         System.out.print(valeur1);
-                System.out.print(result);
+        System.out.print(result);
 
         Assertions.assertEquals(valeur1, result, "La valeur récupérée ne corresponds pas à la valeur ");
     }
@@ -101,7 +70,7 @@ public class ActionSimpleTest {
      */
     @Test
     public final void testValeur2() {
-        Jour jour2 = new Jour(ANNEE, JOURS);
+        Jour jour2 = new Jour(2023, 16);
 
         float valeur2 = 0;
 
@@ -126,4 +95,36 @@ public class ActionSimpleTest {
 
         Assertions.assertEquals(libelle, result3, "Le libellé récupéré n'est pas le même ");
     }
+    
+            /**
+     * valeur mx action portefeuille.
+     */
+    @Test
+    public void testValeurMax() {
+        ActionSimple France2;
+        ActionSimple France3;
+        Jour j1;
+
+        // init des objets metiers Jour
+        j1 = new Jour(2022, 31);
+
+        // creation d'actions simples et composée
+        France2 = new ActionSimple("France2");
+        France2.enrgCours(j1, 200);
+        France2.enrgCours(j1, 100);
+
+        Portefeuille p;
+        p = new Portefeuille();
+        p.acheter(France2, 10);
+        p.acheter(France2, 30);
+      
+        float val = France2.valeurMaxActionSimple();
+        float res = 200;
+
+        Assertions.assertEquals( val , res);
+
+    }
+    
+
+
 }
