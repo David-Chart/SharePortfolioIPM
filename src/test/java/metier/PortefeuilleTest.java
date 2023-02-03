@@ -19,6 +19,10 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
+
+
+
 /**
  *
  * @author David_C
@@ -28,9 +32,38 @@ public final class PortefeuilleTest {
     /**
      * Tests.
      */
-    public PortefeuilleTest() {
-        testGetValeurPortefeuille();
-    }
+    public PortefeuilleTest() {    }
+
+    /**
+     * ANNEE.
+     */
+    private static final int ANNEE = 2014;
+    /**
+     * JOUR.
+     */
+    private static final int JOURS = 1;
+    /**
+     * VALEUR1.
+     */
+    private static final int VALEUR1 = 200;
+    /**
+     * VALEUR2.
+     */
+    private static final int VALEUR2 = 100;
+    /**
+     * QTE1.
+     */
+    private static final int QTE1 = 10;
+    /**
+     * QTE2.
+     */
+    private static final int QTE2 = 20;
+    /**
+     * valeur.
+     */
+    private static final float val = 4000;
+
+
 
     /**
      * Test permettant de verifier la valeur du portefeuille.
@@ -42,38 +75,91 @@ public final class PortefeuilleTest {
         Jour j1;
 
         // init des objets metiers Jour
-        j1 = new Jour(2014, 1);
+        j1 = new Jour(ANNEE, JOURS);
 
         // creation d'actions simples et composée
         France2 = new ActionSimple("France2");
         France3 = new ActionSimple("France3");
 
-        France3.enrgCours(j1, 200);
-        France2.enrgCours(j1, 100);
+        France3.enrgCours(j1, VALEUR1);
+        France2.enrgCours(j1, VALEUR2);
 
         Portefeuille p;
         p = new Portefeuille();
-        p.acheter(France3, 10);
-        p.acheter(France2, 20);
+        p.acheter(France3, QTE1);
+        p.acheter(France2, QTE2);
 
-        float valeur = 4000;
         float res = p.valeur(j1);
-        Assertions.assertEquals(res, valeur);
+        System.out.println(res);
+        Assertions.assertEquals(val, res);
     }
-    
-    
-    
 
+    /**
+     * consulter ventes.
+     */
+    @Test
+    public void testConsultationVentes() {
+        ActionSimple France2;
+        ActionSimple France3;
+        Jour j1;
 
-    
-   
+        // init des objets metiers Jour
+        j1 = new Jour(ANNEE, JOURS);
 
+        // creation d'actions simples et composée
+        France2 = new ActionSimple("France2");
+        France3 = new ActionSimple("France3");
+
+        France3.enrgCours(j1, VALEUR1);
+        France2.enrgCours(j1, VALEUR2);
+
+        Portefeuille p;
+        p = new Portefeuille();
+        p.acheter(France3, QTE1);
+        p.acheter(France2, QTE2);
+        HashMap<Action, Jour> res = new HashMap<>();
+        res = (HashMap<Action, Jour>) p.vendre(France2,5);
+        int valeur = res.size();
+        Assertions.assertEquals(valeur, res.size());
+    }
+
+    /**
+     * valeur mx action portefeuille.
+     */
+    @Test
+    void testValeurMax() {
+        ActionSimple France2;
+        ActionSimple France3;
+        Jour j1;
+
+        // init des objets metiers Jour
+        j1 = new Jour(ANNEE, JOURS);
+
+        // creation d'actions simples et composée
+        France2 = new ActionSimple("France2");
+        France3 = new ActionSimple("France3");
+
+        France3.enrgCours(j1, VALEUR1);
+        France2.enrgCours(j1, VALEUR2);
+        Portefeuille p;
+        p = new Portefeuille();
+        p.acheter(France3, QTE1);
+        p.acheter(France2, QTE2);
+        float values = p.valeurMaxPortefeuille(j1);
+        float res = val;
+        System.out.print(values);
+        Assertions.assertEquals(values, res);
+
+    }
+
+    /**
+     * Quantite.
+     */
+    @Test
     public void testGetQte() {
 
         //Test la récuperation d'une quantité
         ActionSimple actionSimple = new ActionSimple("TF1");
-
-        ActionComposee actionComposee = new ActionComposee("France 2");
 
         Portefeuille portefeuille1 = new Portefeuille();
 
@@ -88,8 +174,12 @@ public final class PortefeuilleTest {
         Assertions.assertEquals(qte, result, "la quantité récupérée n'est pas la même que la quantité enregistrée");
     }
 
+    /**
+     * vérifier que  l'action existe déjà dans le portefeuille.
+     */
+    @Test
     public void testAcheter() {
-        //test pour vérifier que la méthode acheter fonction dans le cas ou l'action existe déjà dans le portefeuille
+        //
         ActionSimple actionSimple = new ActionSimple("TF1");
 
         Portefeuille portefeuille1 = new Portefeuille();
@@ -101,12 +191,14 @@ public final class PortefeuilleTest {
 
         int result1 = portefeuille1.getMapLignes(actionSimple);
 
-        Assertions.assertEquals(qte1, result1, "la quantité récupérée n'a pas fait la somme de la quantité déjà existance");
+        Assertions.assertEquals(qte1, result1, "quantité récupérée n'a pas fait la somme de la quantité déjà existance");
     }
 
+    /**
+     * méthode vendre fonctionne quand on vends une quantité inf à la qte ex.
+     */
+    @Test
     public void testVendre() {
-        //Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité inférieure à la quantité existante
-
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
         portefeuille1.acheter(actionSimple, 7);
@@ -116,12 +208,15 @@ public final class PortefeuilleTest {
 
         int result2 = portefeuille1.getMapLignes(actionSimple);
 
-        Assertions.assertEquals(qte2, result2, "la quantité récupérée n'a pas soustrait la quantité vendue à celle déjà existante");
+        Assertions.assertEquals(qte2, result2, "la quantité récupérée n'a pas soustrait la qte vendue à celle déjà existante");
 
     }
 
+    /**
+     * methode vente.
+     */
+    @Test
     public void testVendreTout() {
-        //Test pour vérifier que la méthode vendre fonctionne quand on vends une quantité égale à la quantité existante
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
 
@@ -135,7 +230,5 @@ public final class PortefeuilleTest {
         Assertions.assertEquals(qte3, result3, "la quantité récupérée n'est pas égale à 0");
 
     }
-    
-    
 }
 

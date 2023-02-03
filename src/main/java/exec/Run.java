@@ -13,7 +13,8 @@ import metier.Portefeuille;
 public class Run {
 
     public static void main(String[] args) {
-        ActionSimple bnp, axa;
+        ActionSimple bnp;
+        ActionSimple axa;
         ActionComposee bqAss;
         Jour j1; 
         Jour j2;
@@ -27,8 +28,8 @@ public class Run {
         axa = new ActionSimple("AXA");
         bqAss = new ActionComposee("Banque-Assurance");
         // enrg de la composition de l'action composée
-        bqAss.enrgComposition(axa, 0.3f);
-        bqAss.enrgComposition(bnp, 0.7f);
+        bqAss.enrgCompo(axa, 0.3f);
+        bqAss.enrgCompo(bnp, 0.7f);
         // enrg. de 2 cours pour chaque action 
         axa.enrgCours(j1, 200);
         axa.enrgCours(j2, 250);
@@ -47,7 +48,8 @@ public class Run {
         p.acheter(bqAss, 5);
         System.out.println("Portefeuille : " + p);
         p.acheter(bqAss, 15);
-        System.out.println("Portefeuille : " + p);
+
+        
         System.out.println("Portefeuille à j1 : " + p.valeur(j1));
         p.vendre(axa, 5);
         System.out.println("Portefeuille : " + p);
@@ -57,7 +59,10 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.vendre(bnp, 50);
         System.out.println("Portefeuille : " + p);
- 
+       
+
+
+        
     }
 
 }

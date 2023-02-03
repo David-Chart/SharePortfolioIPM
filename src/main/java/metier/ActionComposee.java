@@ -19,26 +19,29 @@ public class ActionComposee extends Action {
     private Map<ActionSimple, Float> mapPanier;
 
     /**
-     * Constructor.
+     * Constructeur ActionComposee.
+     * @param libelle
      */
-    public ActionComposee(String libelle) {
+    public ActionComposee(final String libelle) {
         super(libelle);
-        this.mapPanier = new HashMap();
+        this.mapPanier = new HashMap<>();
     }
 
     /**
      * Methode permet l'ajout d'action simple dans une action composée.
+     * @param as
+     * @param pourcentage
      */
-    public void enrgComposition(ActionSimple as, float pourcentage) {
+    public final void enrgCompo(final ActionSimple as,float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
 
     @Override
-    public float valeur(Jour j) {
+    public final float valeur(Jour j) {
         float valeur;
         valeur = 0;
-        for (ActionSimple as : this.mapPanier.keySet()) {
-            valeur = valeur + (as.valeur(j) * this.mapPanier.get(as));
+        for(Map.Entry<ActionSimple, Float> entry : mapPanier.entrySet()){
+            valeur = valeur + (entry.getKey().valeur(j) * this.mapPanier.get(entry));
         }
         return valeur;
     }
@@ -48,17 +51,17 @@ public class ActionComposee extends Action {
      * La méthode retourne une hashMap qui stock toute les actions.
      * qui composent l'action composée et les pourcentages
      */
-    public Map<ActionSimple, Float> getMapPanier(){
+    public final Map<ActionSimple, Float> getMapPanier() {
         return this.mapPanier;
     }
-    
+
     /**
      * Cette méthode retourne le pourcentage d'une action
      * simpla composant une action composée.
      * @param as
      * @return le pourcentage.
      */
-    public final float pourcentageActionSimple(ActionSimple as){
+    public final float pourcentageActionSimple(final ActionSimple as){
         return this.mapPanier.get(as);
     }
 }

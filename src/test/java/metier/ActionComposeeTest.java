@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -65,21 +66,20 @@ public class ActionComposeeTest {
     /**
      * 
      */
-    public void testGetMapPanier() {
-       
-        Map<ActionSimple, Float> composition = new HashMap<ActionSimple, Float>();
+    public void testGetMapPanier() {  
+        Map<ActionSimple, Float> composition;
+        composition = new HashMap<ActionSimple, Float>();
         composition.put(ACTIONSIMPLE1_TEST, 0.33f);
         composition.put(ACTIONSIMPLE2_TEST, 0.33f);
-        composition.put(ACTIONSIMPLE3_TEST, 0.34f);
-        
+        composition.put(ACTIONSIMPLE3_TEST, 0.34f);       
         ActionComposee instance = new ActionComposee("FranceTV");
-        instance.enrgComposition(ACTIONSIMPLE1_TEST, 0.33f);
-        instance.enrgComposition(ACTIONSIMPLE2_TEST, 0.33f);
-        instance.enrgComposition(ACTIONSIMPLE3_TEST, 0.34f);
+        instance.enrgCompo(ACTIONSIMPLE1_TEST, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE2_TEST, 0.33f);
+        instance.enrgCompo(ACTIONSIMPLE3_TEST, 0.34f);
         
         
         Map<ActionSimple, Float> result = instance.getMapPanier();
-        assertEquals(composition, result, "The result must be the same as the one used at creation time.");
+        Assertions.assertEquals(composition, result, "The result must be the same as the one used at creation time.");
         // TODO review the generated test code and remove the default call to fail.
     }
     @Test
@@ -90,10 +90,10 @@ public class ActionComposeeTest {
 
      float expRes = 0.34f;
      ActionComposee instance = new ActionComposee("FranceTV");
-     instance.enrgComposition(ACTIONSIMPLE1_TEST, 0.33f);
-     instance.enrgComposition(ACTIONSIMPLE2_TEST, 0.33f);
-     instance.enrgComposition(ACTIONSIMPLE3_TEST, 0.34f);
+     instance.enrgCompo(ACTIONSIMPLE1_TEST, 0.33f);
+     instance.enrgCompo(ACTIONSIMPLE2_TEST, 0.33f);
+     instance.enrgCompo(ACTIONSIMPLE3_TEST, 0.34f);
      float res = instance.pourcentageActionSimple(ACTIONSIMPLE3_TEST);
-    assertEquals(expRes, res, "The result must be the same as the one used at creation time.");   
+    Assertions.assertEquals(expRes, res, "The result must be the same as the one used at creation time.");   
     }
 }

@@ -12,15 +12,25 @@ package metier;
  */
 public class Jour {
 
-    private int annee;
-    private int noJour;
+    public static int HASH = 7;
+    public static int VALEUR = 61;
+
+    /**
+     * année du jour.
+     */
+    private final int annee;
+
+    /**
+     * numero du jour.
+     */
+    private final int noJour;
 
     /**
      * Get the value of annee.
      *
      * @return the value of annee
      */
-    public int getAnnee() {
+    public final int getAnnee() {
         return annee;
     }
 
@@ -30,30 +40,34 @@ public class Jour {
      *
      * @return the value of noJour
      */
-    public int getNoJour() {
+    public final int getNoJour() {
         return noJour;
     }
 
     /**
      * Constructor.
-     * @param annee
+     * @param an
      * @param noJour
      */
-    public Jour(int annee, int noJour) {
-        this.annee = annee;
+    public Jour(final int an, int noJour) {
+        this.annee = an;
         this.noJour = noJour;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + this.annee;
-        hash = 61 * hash + this.noJour;
-        return hash;
+    public final int hashCode() {
+        HASH = VALEUR * HASH + this.annee;
+        HASH = VALEUR * HASH + this.noJour;
+        return HASH;
     }
 
+    /**
+     *methode equals
+     * @param obj
+     * @return boolean
+     */
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
@@ -64,9 +78,6 @@ public class Jour {
         if (this.annee != other.annee) {
             return false;
         }
-        if (this.noJour != other.noJour) {
-            return false;
-        }
-        return true;
+        return this.noJour == other.noJour;
     }
 }

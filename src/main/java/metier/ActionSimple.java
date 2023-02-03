@@ -15,18 +15,20 @@ import java.util.Map;
  */
 public class ActionSimple extends Action {
 
-    // attribut lien
-    private Map<Jour, Cours> mapCours;
+    /**
+     * HashMap des actions simple.
+     */
+    private final Map<Jour, Cours> mapCours;
 
     /**
      * Constructor.
      * @param libelle
      */
-    public ActionSimple(String libelle) {
+    public ActionSimple(final String libelle) {
         // Action simple initialisée comme 1 action
         super(libelle);
         // init spécifique
-        this.mapCours = new HashMap();
+        this.mapCours = new HashMap<>();
     }
 
     /**
@@ -34,12 +36,17 @@ public class ActionSimple extends Action {
      * @param j
      * @param v
      */
-    public void enrgCours(Jour j, float v) {
+    public final void enrgCours(final Jour j, float v) {
         if (!this.mapCours.containsKey(j)) {
             this.mapCours.put(j, new Cours(j, v));
         }
     }
 
+    /**
+     *
+     * @param j
+     * @return hashmap cours
+     */
     @Override
     public float valeur(Jour j) {
         if (this.mapCours.containsKey(j)) {
@@ -56,11 +63,11 @@ public class ActionSimple extends Action {
         /**
          * attribut Jour jour.
          */
-        private Jour jour;
+        private final Jour jour;
         /**
          * Atribut valeur.
          */
-        private float valeur;
+        private final float valeur;
         /**
          * Getter of valeur.
          * @return valeur
@@ -77,11 +84,11 @@ public class ActionSimple extends Action {
         }
         /**
          * Constructor.
-         * @param jour
+         * @param j
          * @param valeur
          */
-        public Cours(Jour jour, float valeur) {
-            this.jour = jour;
+        Cours(final Jour j, float valeur) {
+            this.jour = j;
             this.valeur = valeur;
         }
 

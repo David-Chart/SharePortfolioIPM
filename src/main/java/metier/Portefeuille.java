@@ -5,9 +5,7 @@
  */
 package metier;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,10 +44,11 @@ public class Portefeuille {
         }
 
         /**
+         * @param quantite
          * Setteur of qté.
          */
-        public void setQte(final int qte) {
-            this.qte = qte;
+        public void setQte(final int quantite) {
+            this.qte = quantite;
         }
 
         /**
@@ -62,10 +61,11 @@ public class Portefeuille {
         }
 
         /**
-         * Constructor.
+         * @param actions
+         * @param qte
          */
-        LignePortefeuille(final Action action, int qte) {
-            this.action = action;
+        public LignePortefeuille(final Action actions, int qte) {
+            this.action = actions;
             this.qte = qte;
         }
 
@@ -79,7 +79,7 @@ public class Portefeuille {
      * Constructor.
      */
     public Portefeuille() {
-        this.mapLignes = new HashMap();
+        this.mapLignes = new HashMap<>();
     }
 
     /**
@@ -88,7 +88,7 @@ public class Portefeuille {
      * @param a
      * @param q
      */
-    public final void acheter(Action a, int q) {
+    public final void acheter(final Action a, int q) {
         if (!this.mapLignes.containsKey(a)) {
             this.mapLignes.put(a, new LignePortefeuille(a, q));
         } else {
@@ -101,7 +101,7 @@ public class Portefeuille {
      * @param q
      * @return une hashmap des actions vendues
      */
-    public HashMap<Action, Jour> vendre(Action a, int q) {
+    public final Map<Action, Jour> vendre(final Action a, int q) {
         Calendar c = Calendar.getInstance();
         Jour j = new Jour(c.get(Calendar.YEAR), c.get(Calendar.MONTH));
         HashMap<Action, Jour> jourVentesActions = new HashMap<>();
@@ -116,8 +116,12 @@ public class Portefeuille {
         return jourVentesActions;
     }
 
+    /**
+     *
+     * @return hashmap
+     */
     @Override
-    public String toString() {
+    public final String toString() {
         return this.mapLignes.toString();
     }
 
@@ -135,7 +139,12 @@ public class Portefeuille {
         return total;
     }
 
-    public float valeurAction(Jour j) {
+    /**
+     * methode qui retourne la valeur total des actions du portefeuille.
+     * @param j
+     * @return valeur total
+     */
+    public final float valeurAction(final Jour j) {
         float totalAction = 0;
         for (Action a : this.mapLignes.keySet()) {
             totalAction += a.valeur(j);
@@ -146,10 +155,10 @@ public class Portefeuille {
     /**
      *
      * @param j
-     * @return
+     * @return liste des actions
      */
-    public HashMap<String, Float> listeActions(Jour j) {
-        HashMap<String, Float> listeActions = new HashMap<String, Float>();
+    public final Map<String, Float> listeActions(final Jour j) {
+        HashMap<String, Float> listeActions = new HashMap<>();
 
         for (Action a : mapLignes.keySet()) {
             listeActions.put(a.getLibelle(), valeurAction(j));
@@ -158,12 +167,37 @@ public class Portefeuille {
     }
 
 
-    
-    public int getMapLignes(Action a) {
+    /**
+     * @param a
+     * @return Hashmap
+     */
+    public final int getMapLignes(final Action a) {
         if (this.mapLignes.containsKey(a)) {
             return this.mapLignes.get(a).getQte();
         } else {
             return 0;
         }
     }
+    
+        /**
+     * 
+     * @param j
+     * @return 
+     */
+    public float valeurMaxPortefeuille(Jour j) {
+        float max = 0;
+         for (Action a : mapLignes.keySet()) {
+             if(a.valeur(j) >= max){
+                 max = a.valeur(j);
+             }
+        }
+        return max;
+    }
+
+    /**
+     * 
+     * @param j
+     * @return 
+     */
+   
 }
