@@ -17,7 +17,8 @@ package metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import metier.Portefeuille.Achat;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -196,7 +197,7 @@ final class PortefeuilleTest {
         resultAttendu.put(france3, 10);
         resultAttendu.put(tf1, 5);
 
-        HashMap<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
+        Map<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
 
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
     }
@@ -232,7 +233,7 @@ final class PortefeuilleTest {
         resultAttendu.put(france3, 10);
         resultAttendu.put(tf1, 3);
 
-        HashMap<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
+        Map<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
 
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
 
@@ -268,7 +269,7 @@ final class PortefeuilleTest {
         resultAttendu.put(france3, 10);
 
 
-        HashMap<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
+        Map<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
 
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
 
@@ -309,7 +310,7 @@ final class PortefeuilleTest {
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
-        ArrayList<Portefeuille.Vente> result1 = portefeuille1.venteJour(jour2);
+        List<Portefeuille.Vente> result1 = portefeuille1.venteJour(jour2);
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
@@ -347,7 +348,7 @@ final class PortefeuilleTest {
         portefeuille1.vendre(tf1, jour2, 1);
         portefeuille1.vendre(france2, jour2, 3);
         portefeuille1.vendre(france2, jour2, 1);
-        ArrayList<Portefeuille.Vente> result1 = portefeuille1.venteJour(jour2);
+        List<Portefeuille.Vente> result1 = portefeuille1.venteJour(jour2);
         Assertions.assertTrue(result1.containsAll(resultAttendu));
 
     }
@@ -389,7 +390,7 @@ final class PortefeuilleTest {
         portefeuille1.vendre(france2, jour2, 1);
         portefeuille1.vendre(france3, jour2, 5);
         
-        ArrayList<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
+        List<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
         Assertions.assertTrue(resultAttendu.containsAll(result1));
     }
     
@@ -419,7 +420,7 @@ final class PortefeuilleTest {
         resultAttendu.put(france3, 10);
         resultAttendu.put(tf1, 5);
 
-        HashMap<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
+        Map<Action, Integer> result1 = portefeuille1.getActionsPortefeuille();
 
         Assertions.assertIterableEquals(resultAttendu.entrySet(), result1.entrySet(), "le resultat attendu difère du résultat réel");
     }
@@ -461,7 +462,7 @@ final class PortefeuilleTest {
         portefeuille1.vendre(france2, jour2, 1);
         portefeuille1.vendre(france3, jour2, 5);
         
-        ArrayList<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
+        List<Portefeuille.Vente> result1 = portefeuille1.derniereVentes();
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
@@ -500,7 +501,7 @@ final class PortefeuilleTest {
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
               
-        ArrayList<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
+        List<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
         Assertions.assertTrue(resultAttendu.containsAll(result1));
 
     }
@@ -539,7 +540,7 @@ final class PortefeuilleTest {
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
               
-        ArrayList<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
+        List<Portefeuille.Achat> result1 = portefeuille1.dernierAchats();
         Assertions.assertFalse(resultAttendu.containsAll(result1));
 
     }
@@ -577,7 +578,7 @@ final class PortefeuilleTest {
         resultAttendu.add(achat5);
         resultAttendu.add(achat6);
               
-        ArrayList<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
+        List<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
         Assertions.assertTrue(result1.containsAll(resultAttendu));
 
     }
@@ -614,7 +615,7 @@ final class PortefeuilleTest {
         resultAttendu.add(achat4);
         resultAttendu.add(achat6);
               
-        ArrayList<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
+        List<Portefeuille.Achat> result1 = portefeuille1.achatJour(jour4);
         Assertions.assertFalse(result1.containsAll(resultAttendu));
     }
     

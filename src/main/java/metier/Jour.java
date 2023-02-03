@@ -13,14 +13,13 @@ package metier;
 public class Jour {
 
     /**
-     * 
+     * hash.
      */
-    public final static   int HASH = 7;
-    
+    public static final int HASH = 7;
     /**
-     * 
+     * valeur.
      */
-    public final static  int VALEUR = 61;
+    public static final int VALEUR = 61;
 
     /**
      * année du jour.
