@@ -41,7 +41,7 @@ public class ActionComposee extends Action {
         float valeur;
         valeur = 0;
         for(Map.Entry<ActionSimple, Float> entry : mapPanier.entrySet()){
-            valeur = valeur + (entry.getKey().valeur(j) * this.mapPanier.get(entry));
+            valeur = valeur + (entry.getKey().valeur(j) * entry.getValue());
         }
         return valeur;
     }

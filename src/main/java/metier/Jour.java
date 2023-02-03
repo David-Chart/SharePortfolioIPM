@@ -12,8 +12,8 @@ package metier;
  */
 public class Jour {
 
-    public final static int HASH = 7;
-    public final static int VALEUR = 61;
+    public final  int HASH = 7;
+    public final  int VALEUR = 61;
 
     /**
      * année du jour.

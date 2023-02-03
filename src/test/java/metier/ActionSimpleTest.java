@@ -35,7 +35,7 @@ public class ActionSimpleTest {
      * testValeur.
      */
     @Test
-    public final void testValeur(){
+    final void testValeur(){
     ACTIONS_TEST.enrgCours(j, c);
     ACTIONS_TEST.enrgCours(j1, c1);
     float res = ACTIONS_TEST.valeur(j);
@@ -49,7 +49,7 @@ public class ActionSimpleTest {
      * Tester la méthode enregistrer un cours.
      */
     @Test
-    public final void testEnregistrerCours() {
+     final void testEnregistrerCours() {
         Jour jour1 = new Jour(2023, 15);
 
          float valeur1 = 50;
@@ -69,7 +69,7 @@ public class ActionSimpleTest {
      * Teste.r la méthode valeur pour connaitre la valeur d'une action.
      */
     @Test
-    public final void testValeur2() {
+     final void testValeur2() {
         Jour jour2 = new Jour(2023, 16);
 
         float valeur2 = 0;
@@ -86,7 +86,7 @@ public class ActionSimpleTest {
      * Tester la méthode getLibelle pour connaitre le libelle d'une action.
      */
     @Test
-    public final void testGetLibelle() {
+     final void testGetLibelle() {
         ActionSimple actionsimple3 = new ActionSimple("France 3");
 
         String libelle = "France 3";
@@ -100,7 +100,7 @@ public class ActionSimpleTest {
      * valeur mx action portefeuille.
      */
     @Test
-    public void testValeurMax() {
+     void testValeurMax() {
         ActionSimple France2;
         ActionSimple France3;
         Jour j1;

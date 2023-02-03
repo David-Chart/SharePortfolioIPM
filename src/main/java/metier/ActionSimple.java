@@ -36,12 +36,9 @@ public class ActionSimple extends Action {
      */
     public float valeurMaxActionSimple() {
         float max = 0;
-        float min = 0;
          for (Cours a : mapCours.values()) {
              if(a.getValeur() >= max){
                  max = a.getValeur();
-             }else{
-                 min = a.getValeur();
              }
         }
         return max;

@@ -136,9 +136,6 @@ public class Portefeuille {
         for (LignePortefeuille lp : this.mapLignes.values()) {
             total = total + (lp.getQte() * lp.getAction().valeur(j));
         }
-        for (Map.Entry<Action, LignePortefeuille> entry : mapLignes.entrySet()) {
-            System.err.println("entry = " + entry);
-        }
         return total;
     }
 

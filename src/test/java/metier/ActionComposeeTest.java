@@ -66,7 +66,7 @@ public class ActionComposeeTest {
     /**
      * 
      */
-    public void testGetMapPanier() {  
+     void testGetMapPanier() {  
         Map<ActionSimple, Float> composition;
         composition = new HashMap<ActionSimple, Float>();
         composition.put(ACTIONSIMPLE1_TEST, 0.33f);
@@ -86,7 +86,7 @@ public class ActionComposeeTest {
     /**
      * test of value méthode.
      */
-    public void testValeurVraie(){
+     void testValeurVraie(){
 
      float expRes = 0.34f;
      ActionComposee instance = new ActionComposee("FranceTV");

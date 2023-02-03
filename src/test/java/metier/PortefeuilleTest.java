@@ -43,27 +43,27 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      */
 
     @Test
-    public void testConsultationVentes() {
-        ActionSimple France2;
-        ActionSimple France3;
+     void testConsultationVentes() {
+        ActionSimple france2;
+        ActionSimple france3;
         Jour j1;
 
         // init des objets metiers Jour
         j1 = new Jour(2014, 1);
 
         // creation d'actions simples et composée
-        France2 = new ActionSimple("France2");
-        France3 = new ActionSimple("France3");
+        france2 = new ActionSimple("France2");
+        france3 = new ActionSimple("France3");
 
-        France3.enrgCours(j1, 200);
-        France2.enrgCours(j1, 100);
+        france3.enrgCours(j1, 200);
+        france2.enrgCours(j1, 100);
 
         Portefeuille p;
         p = new Portefeuille();
-        p.acheter(France3, 10);
-        p.acheter(France2, 20);
+        p.acheter(france3, 10);
+        p.acheter(france2, 20);
         HashMap<Action, Jour> res = new HashMap<>();
-        res = (HashMap<Action, Jour>) p.vendre(France2,5);
+        res = (HashMap<Action, Jour>) p.vendre(france2,5);
         int valeur = res.size();
         Assertions.assertEquals(valeur, res.size());
     }
@@ -74,7 +74,7 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      * Quantite.
      */
     @Test
-    public void testGetQte() {
+     void testGetQte() {
 
         //Test la récuperation d'une quantité
         ActionSimple actionSimple = new ActionSimple("TF1");
@@ -96,7 +96,7 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      * vérifier que  l'action existe déjà dans le portefeuille.
      */
     @Test
-    public void testAcheter() {
+     void testAcheter() {
         //
         ActionSimple actionSimple = new ActionSimple("TF1");
 
@@ -116,7 +116,7 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      * méthode vendre fonctionne quand on vends une quantité inf à la qte ex.
      */
     @Test
-    public void testVendre() {
+     void testVendre() {
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
         portefeuille1.acheter(actionSimple, 7);
@@ -134,7 +134,7 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      * methode vente.
      */
     @Test
-    public void testVendreTout() {
+     void testVendreTout() {
         ActionSimple actionSimple = new ActionSimple("TF1");
         Portefeuille portefeuille1 = new Portefeuille();
 
@@ -153,7 +153,7 @@ private static final Jour TEST_J1 = new Jour(2014, 1);
      * Test permettant de verifier la valeur du portefeuille.
      */
     @Test
-    public void testGetValeurPortefeuille() {
+     void testGetValeurPortefeuille() {
         ActionSimple France2;
         ActionSimple France3;
 
